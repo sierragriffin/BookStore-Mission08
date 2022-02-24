@@ -1,0 +1,25 @@
+﻿<!--Index Page that lists Book Information-->
+@{
+    ViewData["Title"] = "Home Page - Book List";
+}
+
+@model BooksViewModel;
+
+<!--Lists out information for each item stored in the database of type "Book"-->
+@foreach (Book book in Model.Books)
+{
+    <partial name="BookSummary" model="book"/>
+}
+
+<!--Dynamic page links, implements custom tag helpers-->
+<div page-model="@Model.PageInfo"
+     page-action=""
+     page-classes-enabled="true"
+     page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     class="btn-group pull-right m-1">
+</div>
+
+
+<!--Tag Helpers changes the code and turns it into html at runtime, they build dynamically-->

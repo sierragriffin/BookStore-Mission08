@@ -1,0 +1,50 @@
+﻿@page
+@model OnlineBookStore.Pages.AddToCartModel
+@{
+    ViewData["Title"] = "Customer Cart";
+}
+
+<!--Razor Page for Customer Cart-->
+
+<div style="text-align:center">
+    <h1>YOUR CART</h1>
+</div>
+
+<!--ouptut table-->
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var i in Model.Cart.Items)
+        {
+            <tr>
+                <td>@i.Book.Title</td>
+                <td>@i.Quantity</td>
+                <td>@i.Book.Price.ToString("c")</td>
+                <td>@((i.Quantity * i.Book.Price).ToString("c"))</td>
+            </tr>
+        }
+    </tbody>
+
+    <!--cart total-->
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td>@Model.Cart.CalculateTotal().ToString("c")</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+<!--button to return to the page where user left off when they added book to cart-->
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+</div>
